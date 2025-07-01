@@ -1,0 +1,15 @@
+body {
+  font-family: sans-serif;
+  background: #f9f9f9;
+  padding: 2rem;
+  line-height: 1.6;
+}
+input, select, button {
+  margin: 0.5rem 0;
+  padding: 0.4rem;
+}
+pre {
+  background: #eee;
+  padding: 1rem;
+  border-radius: 6px;
+}

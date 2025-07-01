@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AVPP Triplet N Signer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>AVPP.app — Antiviolent Prompt Protocol</h1>
+  <label>Enter Spiral N:</label>
+  <input type="number" id="spiralInput" />
+  <select id="aiModel">
+    <option value="none">No AI</option>
+    <option value="chatgpt">ChatGPT</option>
+    <option value="deepseek">DeepSeek</option>
+  </select>
+  <button onclick="signTriplet()">Sign Prompt</button>
+  <pre id="output"></pre>
+
+  <script src="triplet.js"></script>
+  <script src="ai-validator.js"></script>
+  <script>
+    function signTriplet() {
+      const spiralN = parseInt(document.getElementById('spiralInput').value);
+      const aiModel = document.getElementById('aiModel').value;
+      const result = getPiStage(calculateTripletN(spiralN));
+      const aiNote = aiModel !== 'none' ? `AI model selected: ${aiModel}` : 'No AI model selected.';
+      document.getElementById('output').textContent =
+        `Triplet N = ${result.tripletN}\nPi Stage ≈ ${result.piStage}Pi\nCategory: ${result.category}\n${aiNote}`;
+    }
+  </script>
+</body>
+</html>
