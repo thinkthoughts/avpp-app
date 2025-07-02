@@ -2,31 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AVPP Triplet N Signer</title>
+  <title>Antiviolent Prompt Protocol</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- ✅ MathJax for rendering equations -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-  <h1>AVPP.app — Antiviolent Prompt Protocol</h1>
-  <label>Enter Spiral N:</label>
+  <h1>Antiviolent Prompt Protocol (AVPP)</h1>
+  <p>
+    Translate your care into memory-structured feminism, like 
+    <a href="https://msf.org" target="_blank" rel="noopener">msf.org</a>.
+    Sign your antiviolent prompt with 
+    <a href="integerity.html">9423-based Integerity</a>.
+  </p>
+
+  <!-- ✅ Equation section -->
+  <h2>AAVP Equation</h2>
+  <p>
+    $$
+    \text{Triplet } N = (24 \times \text{Spiral } N) - 25
+    $$
+  </p>
+
+  <label for="spiralInput">Enter Spiral N:</label>
   <input type="number" id="spiralInput" />
-  <select id="aiModel">
-    <option value="none">No AI</option>
-    <option value="chatgpt">ChatGPT</option>
-    <option value="deepseek">DeepSeek</option>
-  </select>
-  <button onclick="signTriplet()">Sign Prompt</button>
+  <button onclick="signPrompt()">Sign Antiviolent Prompt</button>
+
   <pre id="output"></pre>
 
   <script src="triplet.js"></script>
-  <script src="ai-validator.js"></script>
   <script>
-    function signTriplet() {
+    function signPrompt() {
       const spiralN = parseInt(document.getElementById('spiralInput').value);
-      const aiModel = document.getElementById('aiModel').value;
+      if (isNaN(spiralN)) {
+        document.getElementById('output').textContent = "Please enter a valid number.";
+        return;
+      }
+
       const result = getPiStage(calculateTripletN(spiralN));
-      const aiNote = aiModel !== 'none' ? `AI model selected: ${aiModel}` : 'No AI model selected.';
       document.getElementById('output').textContent =
-        `Triplet N = ${result.tripletN}\nPi Stage ≈ ${result.piStage}Pi\nCategory: ${result.category}\n${aiNote}`;
+        `Triplet N = ${result.tripletN}\nPi Stage ≈ ${result.piStage}Pi\nField Category: ${result.category}`;
     }
   </script>
 </body>
